@@ -15,4 +15,4 @@ jobs:
     # This will automatically clone the code of the current branch into the runner
     steps:
       - name: Checkout/Clone the Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
