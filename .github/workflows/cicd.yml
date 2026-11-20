@@ -1,35 +1,46 @@
+# Workflow Name:- Defines the name displayed in the GitHub Actions tab.
 name: CICD
 
+# Workflow Trigger:- workflow_dispatch allows manual execution from GitHub Actions.
 on:
   workflow_dispatch:
 
-
+# Jobs:- Defines the different stages of the CI/CD pipeline.
 jobs:
+
+  # Job 1: Code:- This job is responsible for fetching the source code.
   code:
+    # Creates a temporary Ubuntu virtual machine (runner).
     runs-on: ubuntu-latest
+
+    # Steps to execute inside the job.
     steps:
       - name: Clone the Code
         run: echo "Cloning the Code"
 
+  # Job 2: Build:- This job runs only after the Code job completes successfully.
   build:
     needs: [code]
     runs-on: ubuntu-latest
+
     steps:
       - name: Build using Docker
         run: echo "Building Using Docker"
 
+  # Job 3: Test:- This job runs only after the Build job completes successfully.
   test:
     needs: [build]
     runs-on: ubuntu-latest
+
     steps:
       - name: Running Test Cases
         run: echo "Testing the Code"
 
+  # Job 4: Deploy:- This job runs only after both Build and Test complete successfully.
   deploy:
     needs: [build, test]
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploying on the machine
         run: echo "Deploying the Code"
-  
-      
