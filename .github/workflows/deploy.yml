@@ -1,0 +1,27 @@
+# Workflow Name
+# Defines the name of the reusable deployment workflow.
+name: Deploy
+
+# Workflow Trigger
+# workflow_call allows this workflow to be called
+# from another GitHub Actions workflow.
+on:
+  workflow_call:
+
+# Jobs
+# Defines the deployment tasks to execute.
+jobs:
+
+  # Job 1: Deploy
+  deploy:
+    # Creates a temporary Ubuntu runner.
+    runs-on: ubuntu-latest
+
+    # Steps to execute inside the deployment job.
+    steps:
+
+      # Step 1: Deploy the application.
+      # The actual deployment can be performed using SSH,
+      # AWS CLI, or other deployment tools.
+      - name: Deploy the code
+        run: echo "Code Deployed to AWS EC2 instance"
