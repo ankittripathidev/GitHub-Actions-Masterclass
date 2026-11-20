@@ -1,19 +1,35 @@
-# Workflow [No indentation required for naming the workflow]
+
+# Workflow Name
+# Defines the name displayed in the GitHub Actions tab.
+# No indentation is required for the workflow name.
 name: Hello
 
-# Tells when the workflow should run/triggers [Give indentation by Tab]
+# Workflow Trigger
+# Defines when the workflow should execute.
+# workflow_dispatch allows you to trigger the workflow manually
+# from the GitHub Actions tab.
 on:
-   workflow_dispatch:
+  workflow_dispatch:
 
-   
-# Jobs tells what the workflow should do, there can be more than one jobs, hence we write jobs 
-# Jobs is an object so needs indetation 
+# Jobs
+# Defines what the workflow should do.
+# A workflow can contain one or more jobs.
+# Each job runs independently unless a dependency is configured.
 jobs:
-  # first job [Give indentation]
+
+  # Job 1: Say Hello
   say-hello:
-    # Create an Ephermal Container with ubuntu running
+
+    # Runner
+    # GitHub creates a temporary (ephemeral) virtual machine
+    # running Ubuntu to execute this job.
     runs-on: ubuntu-latest
-    # That Ephermal Container will have steps to execute, hence name those and use run: run has the command 
+
+    # Steps
+    # Each job contains one or more steps.
+    # Steps execute sequentially in the order they are defined.
     steps:
-      - name: say hello to everyone
+
+      # Step 1: Print a welcome message
+      - name: Say hello to everyone
         run: echo "Hello Dosto"
