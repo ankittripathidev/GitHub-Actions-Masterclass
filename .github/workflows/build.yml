@@ -1,0 +1,26 @@
+# Workflow Name
+# Defines the name of the reusable workflow.
+name: Build
+
+# Workflow Trigger
+# workflow_call allows this workflow to be called
+# from another GitHub Actions workflow.
+on:
+  workflow_call:
+
+# Jobs
+# Defines the tasks to execute when this workflow is called.
+jobs:
+
+  # Job 1: Build
+  build:
+    # Creates a temporary Ubuntu runner.
+    runs-on: ubuntu-latest
+
+    # Steps to execute inside the job.
+    steps:
+
+      # Step 1: Build the application.
+      # Currently, this command only prints a message.
+      - name: Build the code
+        run: echo "Code built using Docker"
