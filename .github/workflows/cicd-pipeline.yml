@@ -1,0 +1,40 @@
+# Workflow Name
+# Defines the name displayed in the GitHub Actions tab.
+name: CICD Pipeline
+
+# Workflow Trigger
+# Automatically triggers the workflow whenever code is pushed
+# to the repository, regardless of the branch.
+on:
+  push:
+
+# Jobs
+# Calls reusable workflows to execute each CI/CD stage.
+jobs:
+
+  # Job 1: Code
+  # Calls the reusable Code workflow.
+  # Checks out the source code from the repository.
+  code:
+    uses: ./.github/workflows/code.yml
+
+  # Job 2: Build
+  # Runs only after the Code workflow completes successfully.
+  # Calls the reusable Build workflow.
+  build:
+    needs: code
+    uses: ./.github/workflows/build.yml
+
+  # Job 3: Test
+  # Runs only after the Build workflow completes successfully.
+  # Calls the reusable Test workflow.
+  test:
+    needs: build
+    uses: ./.github/workflows/test.yml
+
+  # Job 4: Deploy
+  # Runs only after the Test workflow completes successfully.
+  # Calls the reusable Deploy workflow.
+  deploy:
+    needs: test
+    uses: ./.github/workflows/deploy.yml
