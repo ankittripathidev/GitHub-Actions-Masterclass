@@ -1,0 +1,29 @@
+# Workflow Name
+name: Code
+
+# Workflow Trigger
+# workflow_call allows this workflow to be called
+# from another GitHub Actions workflow.
+on:
+  workflow_call:
+
+# Jobs
+# Defines the tasks to execute when this workflow is called.
+jobs:
+
+  # Job 1: Code Checkout
+  code-checkout:
+    # Creates a temporary Ubuntu runner.
+    runs-on: ubuntu-latest
+
+    # Steps to execute inside the job.
+    steps:
+
+      # Step 1: Checkout the repository code.
+      # Downloads the source code into the runner.
+      - name: Clone the code
+        uses: actions/checkout@v7
+
+      # Step 2: Print a confirmation message.
+      - name: Print the message
+        run: echo "Code Cloned"
