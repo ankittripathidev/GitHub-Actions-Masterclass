@@ -1,0 +1,28 @@
+# Workflow Name
+# Defines the name of the reusable workflow.
+name: Test
+
+# Workflow Trigger
+# workflow_call allows this workflow to be called
+# from another GitHub Actions workflow.
+on:
+  workflow_call:
+
+# Jobs
+# Defines the tasks to execute when this workflow is called.
+jobs:
+
+  # Job 1: Test
+  build:
+    # Creates a temporary Ubuntu runner.
+    runs-on: ubuntu-latest
+
+    # Steps to execute inside the job.
+    steps:
+
+      # Step 1: Run application tests.
+      # Testing can be performed using tools such as:
+      # - Pytest: Python application testing.
+      # - SonarQube: Code quality and static analysis.
+      - name: Test the code
+        run: echo "Code Test using Sonar / Pytest"
