@@ -1,32 +1,48 @@
-# What is the goal of your workflow.
-# Goal: Whenever someone changes the python code.
-# The linter will check if the syntax, format, indentation (Linting) is correct or not.
+# Goal:
+# Whenever someone pushes changes to Python files,
+# GitHub Actions automatically runs Ruff to check:
+# - Python code quality
+# - Syntax and common coding errors
+# - Import sorting
+# - Code formatting-related issues (when configured)
 
+# Workflow Name
 name: Auto Linter
 
+# Workflow Trigger
+# Runs whenever changes are pushed to the repository.
 on:
   push:
-    paths: "*.py"
+    # Trigger only when Python files are changed.
+    paths:
+      - "**.py"
 
-
+# Jobs
 jobs:
   code:
+    # GitHub creates a temporary Ubuntu runner.
     runs-on: ubuntu-latest
+
     steps:
-      # This will automatically clone the code of the current branch into the runner
+      # Step 1: Checkout the repository code.
+      # Downloads the current branch's source code into the runner.
       - name: Checkout/Clone the Code
         uses: actions/checkout@v7
 
-      # This step will install python
+      # Step 2: Set up Python.
+      # Installs Python 3.13 in the runner environment.
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
-      # This step will Install the linting tool
+      # Step 3: Install Ruff.
+      # Ruff is a fast Python linter.
       - name: Install Linter
         run: pip install ruff
 
-      # This step will run the linter
-      - name: Check all the files for linting
+      # Step 4: Run Ruff.
+      # Checks Python files for linting errors.
+      # If errors are found, this step fails.
+      - name: Check all files for linting
         run: ruff check .
